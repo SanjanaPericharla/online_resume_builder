@@ -1,0 +1,264 @@
+<html> 
+<head>
+<style>
+.PersonalInfo{
+    border-left: 6px solid grey;
+    border-bottom: 6px solid grey;
+    background-color: lightgrey;
+    display:block;
+    margin-left:200px;
+    margin-right:200px;
+    padding-left:20px;
+    padding-top:2px;
+    padding-bottom:10px;
+    font-size:18px;
+}
+.p_input {
+    border: none;
+    padding-left:5px;
+    border-bottom: 2px solid #000000;
+    background-color: lightgrey;
+    margin-left : 100px;
+    margin-top : 5px;
+    margin-bottom:5px;
+    font-size:17px;
+    width:500px;
+    height:40px;
+}
+.table_input{
+    font-size:16px;
+    border:none;
+    width:200px;
+    height:50px;
+}
+.table_input1{
+    font-size:17px;
+    border:none;
+    width:347px;
+    height:50px;
+}
+table {
+  border-collapse: collapse;
+  background-color:white;
+}
+th,td {
+  border: 1px solid black;
+  height:50px;
+  padding-left:5px;
+  border-bottom: 1px solid black;
+}
+th {
+  background-color: lightblue;
+  color: white;
+}
+hr{
+  border: 1px solid white;
+  margin-right:20px;
+}
+/*.table_button{
+    width:100px;
+    height:40px;
+    border:none;
+    background-color:darkgrey;
+    margin-right:10px;
+    border:2px solid black;
+}*/
+textarea{
+    border:none;
+    border:2px solid grey;
+    width:600px;
+    height:100px;
+    font-size:17px;
+    padding:10px;
+}
+.pdf_button{
+    border:none;
+    border-radius:5px;
+    border:2px solid green;
+    background-color:green;
+    width:150px;
+    height:50px;
+    float:center;
+    font-size:18px;
+    margin-left:80%;
+}
+</style>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+<script type = "text/javascript" src="html2canvas.js"></script> 
+<script>
+/*var rowcount = 4;
+    function myCreateFunction(){
+        var Class = prompt("Enter your Class ");
+        var year = prompt("Enter year ");
+        var board = prompt("Enter Board/University/Institute ");
+        var per = prompt("Enter Your Percentage ");
+        if(Class != null){
+            var table = document.getElementById("myTable");
+            var row = table.insertRow(++rowcount);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+
+            cell1.innerHTML = Class.fontsize(4);
+            cell2.innerHTML = year.fontsize(4);
+            cell3.innerHTML = board.fontsize(4);
+            cell4.innerHTML = per.fontsize(4);
+        }else{
+            alert("Please enter your class");
+        }
+    }
+    function myDeleteFunction(){
+        document.getElementById("myTable").deleteRow(rowcount);
+        --rowcount;
+    }*/
+    function genPDF() {
+        var doc = new jsPDF();
+
+	//var image = document.getElementById("photo");//
+	//alert(image);//
+	//doc.addImage("C:\Users\DELL\Desktop\photo", 'jpg',100,30,150,150,'abc');//
+	//doc.addImage(image, 'jpg',100,30,150,150,'abc');//
+
+	doc.setFontType("bold");
+        doc.text(20,20,document.getElementById("f_name").value+" "+document.getElementById("l_name").value);
+        doc.setFontType("normal");
+        doc.setFontSize(12);
+        doc.text(20,30,"Father Name : "+document.getElementById("ft_name").value);
+        doc.text(20,36,"Email       : "+document.getElementById("email").value);
+        doc.text(20,42,"Address     : "+document.getElementById("address").value);
+        doc.text(20,48,"Phone_no    : "+document.getElementById("phone").value);
+	doc.setFontType("bold");
+        doc.setFontSize(16);
+        doc.text(20,60,"Objective");
+        doc.setFontType("normal");
+        doc.setFontSize(12);
+        doc.text(20,68,document.getElementById("object").value);
+        doc.setFontType("bold");
+        doc.setFontSize(16);
+        doc.text(20,100,"Qualification");
+        doc.setFontSize(15);
+        doc.setFontType("normal");
+        doc.text(20,110,"Class");
+        doc.text(50,110,"Year of Passing");
+        doc.text(100,110,"Board/University/Institute");
+        doc.text(170,110,"Percentage");
+        doc.setFontSize(12);
+        doc.text(20,120,"10th");
+        doc.text(50,120,document.getElementById("year1").value);
+        doc.text(100,120,document.getElementById("bu1").value);
+        doc.text(170,120,document.getElementById("per1").value);
+        doc.text(20,121,"__________________________________________________________________________");
+        doc.text(20,127,"12th");
+        doc.text(50,127,document.getElementById("year2").value);
+        doc.text(100,127,document.getElementById("bu2").value);
+        doc.text(170,127,document.getElementById("per2").value);
+        doc.text(20,128,"__________________________________________________________________________");
+        doc.text(20,134,"Graduation");
+        doc.text(50,134,document.getElementById("year3").value);
+        doc.text(100,134,document.getElementById("bu3").value);
+        doc.text(170,134,document.getElementById("per3").value);
+        doc.text(20,135,"__________________________________________________________________________");
+        doc.text(20,141,"P_G");
+        doc.text(50,141,document.getElementById("year4").value);
+        doc.text(100,141,document.getElementById("bu4").value);
+        doc.text(170,141,document.getElementById("per4").value);
+        doc.text(20,142,"__________________________________________________________________________");
+        doc.setFontType("bold");
+        doc.setFontSize(16);
+        doc.text(20,160,"Technical-skills");
+        doc.setFontType("normal");
+        doc.setFontSize(12);
+        doc.text(20,168,document.getElementById("expert").value);
+        doc.setFontType("bold");
+        doc.setFontSize(16);
+        doc.text(20,200,"Personal-interests");
+        doc.setFontType("normal");
+        doc.setFontSize(12);
+        doc.text(20,208,document.getElementById("interest").value);
+	doc.setFontType("bold");
+        doc.setFontSize(16);
+        doc.text(20,240,"Languages known");
+	doc.setFontType("normal");
+        doc.setFontSize(12);
+        doc.text(20,248,document.getElementById("languages").value);
+        doc.save("Resume.pdf"); 
+    }
+</script>
+</head>
+<body>
+<h1 align = "center"> GET YOUR RESUME NOW !!!</h1>
+<div class = "PersonalInfo" id = "perso">
+<h2 style = "color:blue">Personal Information</h2>
+<label><b>First name : </b></label><br>
+<input type = "text" class = "p_input" id = "f_name" placeholder = "Enter your first-name" required /><br>
+<label><b> Last-name : </b></label><br>
+<input type = "text" class = "p_input" id = "l_name" placeholder = "Enter your last-name" required /><br>
+<label><b> Father-name : </b></label><br>
+<input type = "text" class = "p_input" id = "ft_name" placeholder = "Enter your father-name" required /><br>
+<label><b> Email : </b></label><br>
+<input type = "text" class = "p_input" id = "email" placeholder = "Enter your email id" required /><br>
+<label><b> Address : </b></label><br>
+<input type = "text" class = "p_input" id = "address" placeholder = "Enter your address" required /><br>
+<label><b> Phone_no : </b></label><br>
+<input type = "text" class = "p_input" id = "phone" placeholder = "Enter your phone-no" required />
+<br><br><hr></hr>
+<h2 style = "color:blue">Objective</h2>
+<textarea rows = "10" cols = "5" id = "object" placeholder = "Write your Objective"></textarea>
+</br></br>
+<hr></hr>
+<div class = "qualification">
+<h2 style = "color:blue"> Qualification</h2>
+<table id = "myTable" style = "width:98%">
+<col width = "160">
+<tr>
+<th> Class </th>
+<th> Year of Passing </th>
+<th> Board/University </th>
+<th> Percentage % </th>
+</tr>
+<col width = "170">
+<tr>
+<td id = "class1">10<sup>th</sup></td>
+<td><input type = "text" class = "table_input" id = "year1" placeholder = "Enter passing year"/></td>
+<td><input type = "text" class = "table_input1" id = "bu1" placeholder = "Enter board/university"/></td>
+<td><input type = "text" class = "table_input" id = "per1" placeholder = "Enter percentage"/></td>
+</tr>
+<tr>
+<td>12<sup>th</sup></td>
+<td><input type = "text" class = "table_input" id = "year2" placeholder = "Enter passing year"/></td>
+<td><input type = "text" class = "table_input1" id = "bu2" placeholder = "Enter board/university"/></td>
+<td><input type = "text" class = "table_input" id = "per2" placeholder = "Enter percentage"/></td>
+</tr>
+<col width = "350">
+<tr>
+<td> Graduation </td>
+<td><input type = "text" class = "table_input" id = "year3" placeholder = "Enter passing year"/></td>
+<td><input type = "text" class = "table_input1" id = "bu3" placeholder = "Enter board/university"/></td>
+<td><input type = "text" class = "table_input" id = "per3" placeholder = "Enter percentage"/></td>
+</tr>
+<col width = "170">
+<tr>
+<td> Post-Graduation </td>
+<td><input type = "text" class = "table_input" id = "year4" placeholder = "Enter passing year"/></td>
+<td><input type = "text" class = "table_input1" id = "bu4" placeholder = "Enter board/university"/></td>
+<td><input type = "text" class = "table_input" id = "per4" placeholder = "Enter percentage"/></td>
+</tr>
+</table>
+</div>
+<hr></hr>
+<h2 style = "color:blue">Technical-skills </h2>
+<textarea rows = "4" cols = "50" id = "expert" placeholder = "Write your Technical-skills"></textarea><br><br>
+<hr></hr>
+<h2 style = "color:blue">Personal-interests</h2>
+<textarea rows = "4" cols = "50" id = "interest" placeholder = "Write your Personal-interests"></textarea>
+<br><br> <hr></hr>
+<h2 style = "color:blue">Languages known</h2>
+<textarea rows = "4" cols = "50" id = "languages" placeholder = "Write Languages known"></textarea>
+<br><br> <hr></hr>
+<!--<input type = "file" value = "Select Photo" id = "photo"></input>
+<br><br><hr></hr>-->
+<button class = "pdf_button" onclick = "genPDF()">Create Resume PDF</button>
+</div>
+</body>
+</html>
